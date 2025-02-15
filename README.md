@@ -14,18 +14,20 @@ GetX is a powerful and lightweight state management library for Flutter apps. We
 
 Get started building your dream app today with this Flutter starter repo!
 
-<img width="1604"  src="appimages/banner1.png?raw=true">
+## Light Mode
 
-##
+<img width="1604"  src="appimages/banner_light.png?raw=true">
 
-<img width="1604"  src="appimages/banner2.png?raw=true">
+## Dark Mode
+
+<img width="1604"  src="appimages/banner_dark.png?raw=true">
 
 ## Run Locally
 
 Clone the project
 
 ```bash
-  git clone https://github.com/girish54321/Flutter-Starter.git
+  git clone https://github.com/girish54321/Flutter-Starter-App.git
 ```
 
 ```bash
