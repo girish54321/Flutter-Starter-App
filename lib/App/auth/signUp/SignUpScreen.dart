@@ -47,25 +47,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
   }
 
-  void loginUser() {
+  Future<void> loginUser() async {
     if (_formKey.currentState!.validate()) {
       Helper().dismissKeyBoard(context);
       Helper().showLoading();
-      RemoteDataSource _apiResponse = RemoteDataSource();
+      RemoteDataSource apiResponse = RemoteDataSource();
       var parameter = {"email": "eve.holt@reqres.in", "password": "cityslicka"};
-      Future<Result> result = _apiResponse.userLogin(parameter);
-      result.then((value) {
-        if (value is SuccessState) {
-          Helper().hideLoading();
+      var result = await apiResponse.userLogin(parameter);
+
+      switch (result.status) {
+        case LoadingStatus.loading:
+          // Show loading spinner
+          break;
+        case LoadingStatus.success:
+          final data = result.data!;
           if (rememberMe) {
             GetStorage box = GetStorage();
-            var res = value.value as LoginSuccess;
-            box.write('token', res.token);
+            box.write('token', data.token);
+            Get.offAll(HomeScreen());
           }
-          // Get.off(HomeScreen());
-          Get.offAll(HomeScreen());
-        }
-      });
+          break;
+        case LoadingStatus.error:
+          // Show error message: state.errorMessage
+          break;
+      }
     } else {
       // Helper().vibratPhone();
     }

@@ -1,24 +1,18 @@
-class Result<T> {
-  Result._();
+enum LoadingStatus { loading, success, error }
 
-  factory Result.loading(T msg) = LoadingState<T>;
+class LoadingState<T> {
+  final LoadingStatus status;
+  final T? data;
+  final String? errorMessage;
 
-  factory Result.success(T value) = SuccessState<T>;
-
-  factory Result.error(T msg) = ErrorState<T>;
-}
-
-class LoadingState<T> extends Result<T> {
-  LoadingState(this.msg) : super._();
-  final T msg;
-}
-
-class ErrorState<T> extends Result<T> {
-  ErrorState(this.msg) : super._();
-  final T msg;
-}
-
-class SuccessState<T> extends Result<T> {
-  SuccessState(this.value) : super._();
-  final T value;
+  LoadingState.loading()
+      : status = LoadingStatus.loading,
+        data = null,
+        errorMessage = null;
+  LoadingState.success(this.data)
+      : status = LoadingStatus.success,
+        errorMessage = null;
+  LoadingState.error(this.errorMessage)
+      : status = LoadingStatus.error,
+        data = null;
 }

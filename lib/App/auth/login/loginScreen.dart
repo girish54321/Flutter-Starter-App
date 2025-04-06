@@ -4,7 +4,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:reqres_app/App/HomeScreen/HomeScreen.dart';
 import 'package:reqres_app/App/auth/login/loginUI.dart';
 import 'package:reqres_app/App/auth/signUp/SignUpScreen.dart';
-import 'package:reqres_app/network/dataModel/LoginSuccess.dart';
 import 'package:reqres_app/network/model/result.dart';
 import 'package:reqres_app/network/remote_data_source.dart';
 import 'package:reqres_app/network/util/helper.dart';
@@ -47,28 +46,30 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  void loginUser() {
+  Future<void> loginUser() async {
     GetStorage box = GetStorage();
     if (_formKey.currentState!.validate()) {
       Helper().dismissKeyBoard(context);
-      Helper().showLoading();
-      RemoteDataSource _apiResponse = RemoteDataSource();
+      RemoteDataSource apiResponse = RemoteDataSource();
       var parameter = {
         "email": "eve.holt@reqres.in",
         "password": "cityslickasss"
       };
-      Future<Result> result = _apiResponse.userLogin(parameter);
-      result.then((value) {
-        if (value is SuccessState) {
-          Helper().hideLoading();
-          var res = value.value as LoginSuccess;
-          print("Loand and save the result" + res.token!);
-          box.write('token', res.token);
+      var result = await apiResponse.userLogin(parameter);
+
+      switch (result.status) {
+        case LoadingStatus.loading:
+          // Show loading spinner
+          break;
+        case LoadingStatus.success:
+          final data = result.data!;
+          box.write('token', data.token);
           Get.off(HomeScreen());
-        } else {}
-      });
-    } else {
-      // Helper().vibratPhone();
+          break;
+        case LoadingStatus.error:
+          // Show error message: state.errorMessage
+          break;
+      }
     }
   }
 

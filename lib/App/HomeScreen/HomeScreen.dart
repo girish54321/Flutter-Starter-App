@@ -50,16 +50,27 @@ class _HomeScreenState extends State<HomeScreen> {
     Helper().goToPage(context: context, child: SettingsScreen());
   }
 
+  Future<void> getUserList() async {
+    var result = await _apiResponse.userList();
+
+    switch (result.status) {
+      case LoadingStatus.loading:
+        // Show loading spinner
+        break;
+      case LoadingStatus.success:
+        final data = result.data!;
+        controller.saveResponseInState(data);
+        break;
+      case LoadingStatus.error:
+        // Show error message: state.errorMessage
+        break;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    Future<Result> result = _apiResponse.userList();
-    result.then((value) {
-      if (value is SuccessState) {
-        var res = value.value as UserListResponse;
-        controller.saveResponseInState(res);
-      } else {}
-    });
+    getUserList();
   }
 
   @override
