@@ -17,7 +17,7 @@ class RemoteDataSource {
       final response = await client.request(
         requestType: RequestType.POST,
         path: APIPathHelper.getValue(APIPath.login),
-        params: parameter,
+        parameter: parameter,
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
