@@ -1,3 +1,4 @@
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:reqres_app/App/HomeScreen/HomeScreen.dart';
@@ -16,23 +17,33 @@ class ReqResApp extends StatelessWidget {
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
     GetInstance().put<SettingController>(SettingController());
-    print(box.hasData('token'));
-    print("DAKR");
-    print(box.hasData('darkThem'));
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      darkTheme: ThemeData(brightness: Brightness.dark),
-      getPages: [
-        GetPage(
-            name: '/',
-            page: () {
-              return box.hasData('token')
-                  ? _wrapWithBanner(HomeScreen())
-                  : _wrapWithBanner(LoginScreen());
-            })
-      ],
+    return DynamicColorBuilder(
+      builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
+        return GetMaterialApp(
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            colorScheme: darkDynamic,
+            scaffoldBackgroundColor: Colors.black,
+          ),
+          theme: ThemeData(
+            brightness: Brightness.light,
+            colorScheme: lightDynamic,
+          ),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          title: 'Flutter Demo',
+          getPages: [
+            GetPage(
+              name: '/',
+              page: () {
+                return box.hasData('token')
+                    ? _wrapWithBanner(HomeScreen())
+                    : _wrapWithBanner(LoginScreen());
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 
