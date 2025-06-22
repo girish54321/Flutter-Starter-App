@@ -4,7 +4,7 @@ import 'package:reqres_app/network/model/result.dart';
 import 'package:reqres_app/network/model/userListModal.dart';
 import 'package:reqres_app/network/remote_data_source.dart';
 import 'package:reqres_app/widget/loadingView.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:reqres_app/l10n/app_localizations.dart';
 
 class HomeScreenUI extends StatelessWidget {
   final Function userLogout;

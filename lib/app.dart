@@ -5,8 +5,8 @@ import 'package:reqres_app/App/HomeScreen/HomeScreen.dart';
 import 'package:get/get.dart';
 import 'package:reqres_app/App/auth/login/loginScreen.dart';
 import 'package:reqres_app/flavors.dart';
+import 'package:reqres_app/l10n/app_localizations.dart';
 import 'package:reqres_app/state/settingsState.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ReqResApp extends StatelessWidget {
   const ReqResApp({

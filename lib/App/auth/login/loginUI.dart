@@ -5,7 +5,7 @@ import 'package:reqres_app/widget/appInputText.dart';
 import 'package:reqres_app/widget/appText.dart';
 import 'package:reqres_app/widget/buttons.dart';
 import 'package:rules/rules.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:reqres_app/l10n/app_localizations.dart';
 
 class LoginScreenUI extends StatelessWidget {
   final bool validEmail;
