@@ -45,6 +45,12 @@ dependencies:
   cached_network_image: ^3.2.0
   shared_preferences: ^2.1.0
 
+  awesome_notifications_core: ^0.10.0 # use the latest core version available
+  awesome_notifications: ^0.10.0 # This version is managed by core plugin
+  awesome_notifications_fcm: ^0.10.0 # This version is managed by core plugin
+  # firebase_core: ^X.X.X # use the latest available
+  # firebase_crashlytics: ^X.X.X # use the latest available
+
   rules: ^2.0.0
 
   http: ^1.2.2
@@ -52,6 +58,9 @@ dependencies:
   page_transition: ^2.0.2
   get_storage: ^2.1.1
   dynamic_color: ^1.7.0
+  palette_generator: any
+  firebase_core: ^3.14.0
+  firebase_messaging: ^15.2.7
 
 dev_dependencies:
   flutter_test:
@@ -109,8 +118,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/animated-bell.gif
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
