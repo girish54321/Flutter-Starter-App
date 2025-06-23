@@ -1,3 +1,4 @@
+import 'package:awesome_notifications_fcm/awesome_notifications_fcm.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
@@ -48,7 +49,25 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  void showNotification() {
+  // Future<String> getFirebaseMessagingToken() async {
+  //   String firebaseAppToken = 'NA';
+  //   if (await AwesomeNotificationsFcm().isFirebaseAvailable) {
+  //     try {
+  //       firebaseAppToken =
+  //           await AwesomeNotificationsFcm().requestFirebaseAppToken();
+  //     } catch (exception) {
+  //       print("exception");
+  //       print('$exception');
+  //     }
+  //   } else {
+  //     print('Firebase is not available on this project');
+  //   }
+  //   return firebaseAppToken;
+  // }
+
+  Future<void> showNotification() async {
+    // var t = await getFirebaseMessagingToken();
+    // print(t);
     NotificationController.createNewNotification();
     return;
     AwesomeNotifications().initialize(
