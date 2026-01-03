@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reqres_app/network/model/userListModal.dart';
 import 'package:reqres_app/state/userListState.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:reqres_app/l10n/app_localizations.dart';
 
 class UserInfoScreenUI extends StatelessWidget {
   const UserInfoScreenUI({Key? key}) : super(key: key);
