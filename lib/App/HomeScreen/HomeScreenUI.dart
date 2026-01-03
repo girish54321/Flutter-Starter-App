@@ -12,12 +12,14 @@ class HomeScreenUI extends StatelessWidget {
   final Function goToUserInfoScreen;
   final List<AppMenuItem> menu;
   final Function goToSettings;
+  final String buildType;
   const HomeScreenUI(
       {Key? key,
       required this.userLogout,
       required this.remoteDataSource,
       required this.goToUserInfoScreen,
       required this.menu,
+      required this.buildType,
       required this.goToSettings})
       : super(key: key);
 
@@ -26,7 +28,7 @@ class HomeScreenUI extends StatelessWidget {
     var localData = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text(localData.home),
+        title: Text("${localData.home} - $buildType"),
         actions: [
           PopupMenuButton<String>(
             onSelected: (val) {

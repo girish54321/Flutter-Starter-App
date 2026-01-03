@@ -15,16 +15,19 @@ android {
             dimension "flavor-type"
             applicationId "com.example.reqres_app.android"
             resValue "string", "app_name", "ReqRes"
+            resValue "string", "BUILD_ENV", "PROD"
         }
         reqres_dev {
             dimension "flavor-type"
             applicationId "com.example.reqres_app.android.dev"
             resValue "string", "app_name", "ReqRes DEV"
+            resValue "string", "BUILD_ENV", "DEV"
         }
         reqres_qa {
             dimension "flavor-type"
             applicationId "com.example.reqres_app.android.qa"
             resValue "string", "app_name", "ReqRes QA"
+            resValue "string", "BUILD_ENV", "QA"
         }
     }
 

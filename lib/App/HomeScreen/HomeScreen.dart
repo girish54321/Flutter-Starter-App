@@ -6,6 +6,7 @@ import 'package:reqres_app/App/HomeScreen/HomeScreenUI.dart';
 import 'package:reqres_app/App/SettingsScreen/SettingsScreen.dart';
 import 'package:reqres_app/App/UserInfoScreen/userinfoScreenUI.dart';
 import 'package:reqres_app/App/auth/login/loginScreen.dart';
+import 'package:reqres_app/native_bridge.g.dart';
 import 'package:reqres_app/network/model/result.dart';
 import 'package:reqres_app/network/model/userListModal.dart';
 import 'package:reqres_app/network/remote_data_source.dart';
@@ -30,6 +31,14 @@ class _HomeScreenState extends State<HomeScreen> {
   RemoteDataSource _apiResponse = RemoteDataSource();
   final ProductController controller = Get.put(ProductController());
   final List<AppMenuItem> menu = [];
+  String buildType = '';
+
+  Future<void> getBuldType() async {
+    final type = await BuildService.getBuildType();
+    setState(() {
+      buildType = type ?? "NA";
+    });
+  }
 
   Future<void> userLogout() async {
     final action =
@@ -71,12 +80,14 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     getUserList();
+    getBuldType();
   }
 
   @override
   Widget build(BuildContext context) {
     return HomeScreenUI(
         userLogout: userLogout,
+        buildType: buildType,
         remoteDataSource: _apiResponse,
         menu: menu,
         goToSettings: goToSettings,
