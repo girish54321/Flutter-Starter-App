@@ -35,8 +35,8 @@ class ReqResClient {
 
     final headers = <String, String>{
       'Content-Type': 'application/json',
-      'Authorization':
-          'Bearer pub_07e4aa1b3dc33b24a339a69ed1571736a858f33edaf9b647226d90d27bd1a82a',
+      'x-api-key':
+          'pub_07e4aa1b3dc33b24a339a69ed1571736a858f33edaf9b647226d90d27bd1a82a',
       // if (hasToken) 'Authorization': 'Bearer ${box.read(JWT_KEY)}',
     };
     if (kDebugMode) {
